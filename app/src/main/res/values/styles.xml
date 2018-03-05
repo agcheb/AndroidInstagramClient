@@ -17,4 +17,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="SecondAppTheme" parent="AppTheme" >
+        <item name="colorPrimary">@color/colorPrimarySecond</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkSecond</item>
+        <item name="colorAccent">@color/colorAccentSecond</item>
+    </style>
+
 </resources>
