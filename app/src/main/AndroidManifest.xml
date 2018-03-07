@@ -22,7 +22,14 @@
         <activity
             android:name=".ChooseAppColorThemeActivity"
             android:label="@string/title_activity_choose_app_color_theme"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+           <!--<intent-filter>-->
+
+               <!--&lt;!&ndash;<action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
+               <!--&lt;!&ndash;<category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
+           <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>
