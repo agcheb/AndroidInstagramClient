@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             parent.removeAllViews();
             MainActivityFragment fragment = new MainActivityFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment,fragment);
+            fragmentTransaction.replace(R.id.mainactiv,fragment);
             fragmentTransaction.commit();
             } else if (id == R.id.colorthemechooser) {
             optionID = R.layout.activity_choose_app_color_theme;
