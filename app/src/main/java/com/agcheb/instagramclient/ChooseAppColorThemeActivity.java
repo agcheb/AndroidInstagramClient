@@ -14,10 +14,10 @@ public class ChooseAppColorThemeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_app_color_theme);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button fab =  findViewById(R.id.fab1);
+        Button fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

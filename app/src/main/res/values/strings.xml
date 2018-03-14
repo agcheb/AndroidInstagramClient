@@ -7,4 +7,13 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_choose_app_color_theme">ChooseAppColorThemeActivity</string>
     <string name="darktheme">DarkTheme</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="authors">Authors of app.....</string>
+
+    <string name="user_name">User Name</string>
+    <string name="usermail_android_com">usermail@android.com</string>
 </resources>
