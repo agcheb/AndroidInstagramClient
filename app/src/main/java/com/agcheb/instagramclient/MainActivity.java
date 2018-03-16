@@ -1,7 +1,7 @@
 package com.agcheb.instagramclient;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -100,19 +100,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         if (id == R.id.mainscreen) {
-            ViewGroup parent = (ViewGroup)findViewById(R.id.mainactiv);
-            parent.removeAllViews();
-            MainActivityFragment fragment = new MainActivityFragment();
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.mainactiv,fragment);
-            fragmentTransaction.commit();
             } else if (id == R.id.colorthemechooser) {
-            optionID = R.layout.activity_choose_app_color_theme;
-            ViewGroup parent = (ViewGroup)findViewById(R.id.mainactiv);
-            parent.removeAllViews();
-            View newContent = getLayoutInflater().inflate(optionID,parent,false);
-            parent.addView(newContent);
-
+            Intent intent = new Intent(MainActivity.this, ChooseAppColorThemeActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
             optionID = R.layout.about_devs_layout;

@@ -24,14 +24,14 @@ public class MainActivityFragment extends Fragment {
 
          View rootview = inflater.inflate(R.layout.fragment_main, container, false);
 
-        FloatingActionButton fab = rootview.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Фото добавлено", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = rootview.findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Фото добавлено", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         return rootview;
     }
 }
