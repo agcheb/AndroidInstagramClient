@@ -9,8 +9,10 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,9 +22,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.agcheb.instagramclient.dummy.DummyContent;
+
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, FavoritesFragment.OnListFragmentInteractionListener{
 
     private final int CAMERA_RESULT = 0;
     private final int TYPE_PHOTO = 1;
@@ -30,6 +34,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     final String TAG = "MyLog!!!";
 
     File directory;
+
+
+    private CustomFragmentPA customFragmentPA;
+
+    /**
+     * The {@link ViewPager} that will host the section contents.
+     */
+    private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +51,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        MainActivityFragment fragment1 = MainActivityFragment.newInstance(null);
+        FavoritesFragment fragment2 = FavoritesFragment.newInstance(null);
+
+        customFragmentPA = new CustomFragmentPA(getSupportFragmentManager());
+        customFragmentPA.addFragment(fragment1,"General");
+        customFragmentPA.addFragment(fragment2,"Favored");
+
+        mViewPager = findViewById(R.id.container);
+        mViewPager.setAdapter(customFragmentPA);
+
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -176,5 +202,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void createDirectory(){
         directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"myfold");
         if (!directory.exists())directory.mkdirs();
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 }

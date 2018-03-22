@@ -16,4 +16,6 @@
 
     <string name="user_name">User Name</string>
     <string name="usermail_android_com">usermail@android.com</string>
+    <string name="general">General</string>
+    <string name="favored">Favored</string>
 </resources>

@@ -49,4 +49,13 @@ public class MainActivityFragment extends Fragment {
         return rootview;
     }
 
+
+    public static MainActivityFragment newInstance(Bundle bundle){
+        MainActivityFragment currFragment = new MainActivityFragment();
+        Bundle args = new Bundle();
+        args.putBundle("gettedArgs",bundle);
+        currFragment.setArguments(args);
+        return currFragment;
+    }
+
 }
