@@ -1,7 +1,11 @@
 package com.agcheb.instagramclient;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -11,17 +15,28 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    private final int CAMERA_RESULT = 0;
+    private final int TYPE_PHOTO = 1;
+
+    final String TAG = "MyLog!!!";
+
+    File directory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitymainnavview);
+        createDirectory();
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -29,8 +44,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Фото добавлено", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, generateFileUri(TYPE_PHOTO));
+                startActivityForResult(cameraIntent, CAMERA_RESULT);
+
+
+
+
+
             }
         });
 
@@ -42,6 +65,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_RESULT){
+            if (resultCode == RESULT_OK){
+                if(data == null){
+                    Log.d(TAG, "intent is null");
+                }else {
+                    Bundle bnd1 = data.getExtras();
+                    if (bnd1 != null){
+                        Object obj = data.getExtras().get("data");
+                        if (obj instanceof Bitmap){
+                            Bitmap bitmap = (Bitmap) obj;
+                        }
+                    }
+                }
+            }else if(resultCode == RESULT_CANCELED){
+                Log.d(TAG,"canceled");
+            }
+         }
+//        Snackbar.make(, "Фото добавлено", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
 
     }
 
@@ -113,5 +161,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+// Не работает в версиях начиная с Nougatе
+    //    private Uri generateFileUri(int type){
+//        File file = null;
+//        if(type == TYPE_PHOTO){
+//            file = new File(directory.getPath() + "/" + "photo_"
+//                    + System.currentTimeMillis() + ".jpg");
+//        }
+//        Uri uri= Uri.fromFile(file);
+//
+//        return uri;
+//    }
+    private void createDirectory(){
+        directory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"myfold");
+        if (!directory.exists())directory.mkdirs();
     }
 }
